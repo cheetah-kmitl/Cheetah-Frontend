@@ -26,6 +26,7 @@ export const SignupForm = () => {
 
   async function onSignInFormSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setErrorMsg("");
 
     if (!username || !emailAddress || !password || !confirmPassword) {
       setErrorMsg("Please fill all inputs");
@@ -61,6 +62,7 @@ export const SignupForm = () => {
     e.preventDefault();
 
     if (!clerkSignUp.isLoaded) return;
+    setErrorMsg("");
 
     try {
       setIsVerifying(true);
@@ -85,7 +87,7 @@ export const SignupForm = () => {
     isSignupPhase ? 
       <form
         onSubmit={onSignInFormSubmit}
-        className="flex flex-col gap-4 px-16 justify-center items-center"
+        className="flex flex-col gap-3 px-16 justify-center items-center"
       >
         <h1 className="text-5xl font-extrabold mb-6">
           Sign up

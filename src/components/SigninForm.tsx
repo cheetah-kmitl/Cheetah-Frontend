@@ -50,14 +50,14 @@ export const SigninForm = () => {
   return (
     <form
       onSubmit={onFormSubmit}
-      className="flex flex-col gap-4 px-16 justify-center items-center"
+      className="flex flex-col gap-3 px-16 justify-center items-center"
     >
       <h1 className="text-5xl font-extrabold mb-6">
         Sign in
       </h1>
       <TextInput
         onType={(text) => setEmailAddress(text)}
-        placeHolder="Enter your email"
+        placeHolder="Enter your email or username"
       />
       <TextInput
         onType={(text) => setPassword(text)}
