@@ -9,7 +9,7 @@ export const LogoHomeNavigate = () => {
       src={CheetahLogo}
       alt="logo"
       onClick={() => navigate("/")}
-      className="h-24 cursor-pointer"
+      className="cursor-pointer -ml-1"
     />
   );
 }
