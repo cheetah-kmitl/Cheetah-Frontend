@@ -8,7 +8,6 @@ export const PrivateLayout = () => {
 
   if (!isSignedIn)
     return <Navigate to="/auth" />;
-
-
+  
   return <Outlet />;
 }

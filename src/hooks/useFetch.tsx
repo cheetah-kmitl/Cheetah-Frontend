@@ -5,6 +5,7 @@ export const useFetch = <T,>(
     method: "GET" | "POST" | "PUT" | "DELETE",
     body?: BodyInit
 ) => {
+  // const [data, setData] = use
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isError, setIsError] = useState<boolean>(false);
 
