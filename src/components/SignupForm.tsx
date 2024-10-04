@@ -5,7 +5,7 @@ import { isClerkAPIResponseError } from "@clerk/shared/error";
 
 import { TextInput } from "./TextInput";
 
-export const SignupForm = () => {  
+export const SignupForm = () => { 
   // For sign in phase
   const [username, setUsername] = useState<string>("");
   const [emailAddress, setEmailAddress] = useState<string>("");
@@ -17,7 +17,6 @@ export const SignupForm = () => {
   const [code, setCode] = useState<string>("");
   const [isVerifying, setIsVerifying] = useState<boolean>(false);
   
-
   const [isSignupPhase, setIsSignupPhase] = useState<boolean>(true);
   const [errorMsg, setErrorMsg] = useState<string>("");
 
