@@ -9,6 +9,7 @@ import { AddOptions } from "../components/AddOptions";
 import { ActionOption, File } from "../type";
 import { useFetch } from "../hooks/useFetch";
 import { FileUI } from "../components/FileUI";
+import { useSearchParams } from "react-router-dom";
 
 const sortByOption  = ["Name", "Date"];
 const orderByOption = ["Name", "Type"];
@@ -17,7 +18,16 @@ export const DashboardPage = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [files, setFiles] = useState<File[]>([]);
 
+  const [searchParams, setSearchParams] = useSearchParams();
   const filesFetcher = useFetch<File[]>("/data.json", "GET");
+
+  useEffect(() => {
+    const query = searchParams.get("search");
+    if (query) {
+      setSearchQuery(query);
+    }
+
+  }, [searchParams]);
 
   useEffect(() => {
     const fetchFiles = async () => {
@@ -26,8 +36,8 @@ export const DashboardPage = () => {
         setFiles(data);
       }
     }
-
     fetchFiles();
+
   }, []);
 
   const addButtonOptions: ActionOption[] = [
@@ -52,7 +62,12 @@ export const DashboardPage = () => {
           />
         </div>
         <SearchBar
-          onType={(query) => setSearchQuery(query)}
+          defaultValue={searchQuery}
+          className="justify-self-center"
+          onType={(query) => {
+            setSearchParams(query);
+            setSearchQuery(query);
+          }}
         />
         <div className="justify-self-end">
           <SignOutButton
@@ -81,7 +96,7 @@ export const DashboardPage = () => {
               Looks like you don't have a file, Add some?
             </i>
             :
-            <ul className="grid grid-cols-4 w-full gap-12 p-4">
+            <ul className="grid grid-cols-8 w-full gap-12 p-4">
               { files
                 .filter((file) =>
                   file.name.toLowerCase().includes(searchQuery.toLowerCase())
