@@ -1,15 +1,13 @@
 import { useEffect, useState } from "react";
 import { SearchBar } from "../components/SearchBar";
-import { LogoHomeNavigate } from "../components/LogoHomeNavigate";
+import { Logo } from "../components/Logo";
 import { DiskProgressBar } from "../components/DiskProgressBar";
 import { Dropdown } from "../components/Dropdown";
 
-import { SignOutButton } from "@clerk/clerk-react";
 import { AddOptions } from "../components/AddOptions";
 import { ActionOption, File } from "../type";
 import { useFetch } from "../hooks/useFetch";
 import { FileUI } from "../components/FileUI";
-import { useSearchParams } from "react-router-dom";
 
 const sortByOption  = ["Name", "Date"];
 const orderByOption = ["Name", "Type"];
@@ -18,16 +16,7 @@ export const DashboardPage = () => {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [files, setFiles] = useState<File[]>([]);
 
-  const [searchParams, setSearchParams] = useSearchParams();
   const filesFetcher = useFetch<File[]>("/data.json", "GET");
-
-  useEffect(() => {
-    const query = searchParams.get("search");
-    if (query) {
-      setSearchQuery(query);
-    }
-
-  }, [searchParams]);
 
   useEffect(() => {
     const fetchFiles = async () => {
@@ -38,7 +27,7 @@ export const DashboardPage = () => {
     }
     fetchFiles();
 
-  }, []);
+  }, [filesFetcher]);
 
   const addButtonOptions: ActionOption[] = [
     {
@@ -55,7 +44,7 @@ export const DashboardPage = () => {
     <>
       <header className="w-full px-10 py-6 grid grid-cols-3">
         <div className="h-full w-48 -mt-2">
-          <LogoHomeNavigate />
+          <Logo />
           <DiskProgressBar
             used={1}
             totalGB={10}
@@ -65,15 +54,9 @@ export const DashboardPage = () => {
           defaultValue={searchQuery}
           className="justify-self-center"
           onType={(query) => {
-            setSearchParams(query);
             setSearchQuery(query);
           }}
         />
-        <div className="justify-self-end">
-          <SignOutButton
-            redirectUrl="/auth"
-          />
-        </div>
       </header>
 
       <main className="flex flex-col items-center w-full">
