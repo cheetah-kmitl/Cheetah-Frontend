@@ -60,7 +60,7 @@ export const DashboardPage = () => {
       </header>
 
       <main className="flex flex-col items-center w-full">
-        <div className="flex justify-end gap-4 w-4/5 border-b-2 pb-2">
+        <div className="flex justify-end gap-4 w-3/4 border-b-2 pb-2">
           <Dropdown
             title="Sort by"
             options={sortByOption}
@@ -73,13 +73,13 @@ export const DashboardPage = () => {
           />
         </div>
 
-        <div className="mt-4 w-[80%] h-auto">
+        <div className="mt-4 w-3/4 h-auto">
           { files.length === 0 ?
             <i>
               Looks like you don't have a file, Add some?
             </i>
             :
-            <ul className="grid grid-cols-8 w-full gap-12 p-4">
+            <ul className="grid grid-cols-5 w-full gap-12 p-4">
               { files
                 .filter((file) =>
                   file.name.toLowerCase().includes(searchQuery.toLowerCase())
