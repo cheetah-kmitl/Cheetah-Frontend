@@ -6,19 +6,24 @@ interface DropDownProps {
 
 export const Dropdown = ({ title, options, onSelect }: DropDownProps) => {
   return (
-    <select
-      defaultValue={title}
-      onChange={(e) => onSelect(e.target.value)}
-      className="bg-white text-lg"
-    >
-      <option value={title} disabled>
+    <div className="flex gap-2 items-center">
+      <h1 className="text-xs">
         { title }
-      </option>
-      { options.map((option, index) => 
-        <option key={index} value={option}>
-          { option }
-        </option>
-      )}
-    </select>
+      </h1>
+      <select
+        defaultValue={title}
+        onChange={(e) => onSelect(e.target.value)}
+        className="bg-white border rounded-md px-1"
+      >
+        { options.map((option, index) => 
+          <option
+            key={index}
+            value={option}
+          >
+            { option }
+          </option>
+        )}
+      </select>
+    </div>
   );
 }
