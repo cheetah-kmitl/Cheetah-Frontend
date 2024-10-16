@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FaCirclePlus as PlusIcon } from "react-icons/fa6";
-import { ActionOption } from "../type";
+import { ActionOption } from "../ts/type";
 
 interface AddOptionsProps {
   options: ActionOption[]
